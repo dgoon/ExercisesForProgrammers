@@ -1,0 +1,36 @@
+#! /usr/bin/env python3
+"""
+  코틀린 코드를 실행하는 숏컷.
+  PATH 경로에 넣어두면 편하다.
+"""
+
+import sys
+import os
+import shlex
+import subprocess
+
+def usage():
+  print("Usage: %s [InputFile.kt]" % sys.argv[0])
+
+if len(sys.argv) != 2:
+  usage()
+  sys.exit(0)
+
+filename = sys.argv[1]
+
+if filename.endswith('.kt') == False:
+  usage()
+  sys.exit(0)
+
+filebasename = filename[:-3]
+
+cmd_list = [
+  'rm -f %s.jar' % filebasename,
+  'kotlinc %s -include-runtime -d %s.jar' % (filename, filebasename),
+  'kotlin %s.jar' % filebasename
+]
+for cmd in cmd_list:
+  retcode = subprocess.call(shlex.split(cmd))
+  if retcode != 0:
+    print("Failed to execute: %s" % cmd)
+    sys.exit(retcode)
