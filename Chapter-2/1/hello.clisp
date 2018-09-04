@@ -1,0 +1,10 @@
+;;; hello world!
+
+;;; write 를 쓰면 쌍따옴표가 같이 출력된다
+(write-string "What is your name? ")
+(setq name (read-line))
+
+;;; destination 은 nil -> 만들어진 문자열은 리턴됨
+;;; ~A: Ascii
+;;; https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node200.html
+(write-string (format nil "Hello ~A, nice to meet you!" name))

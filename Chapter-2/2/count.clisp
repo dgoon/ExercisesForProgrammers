@@ -1,0 +1,8 @@
+;;; count.clisp
+
+(write-string "What is the input string? ")
+(setq s (read-line))
+(setq l (length s))
+(if (= l 0)
+    (write-string "Empty string!")
+    (write-string (format nil "~A has ~D characters." s l)))
