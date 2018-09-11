@@ -1,0 +1,9 @@
+;;; quote.clisp
+
+(write-string "What is the quote? ")
+(setq quote (read-line))
+
+(write-string "Who said it? ")
+(setq speaker (read-line))
+
+(write-string (format nil "~A says, \"~A\"" speaker quote))
